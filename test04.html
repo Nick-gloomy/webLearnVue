@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="vue.js"></script>
 </head>
 <body>
-
+      <div id="root">
+            <span v-for="item in list1">list1:{{item}}<br></span>
+          <br>
+          <br>
+          <br>
+          <p v-for="(user,index) in list2">{{ user.id }}---{{user.name}}---index:{{index}}</p>
+      </div>
+<script>
+     let vm =new Vue({
+         el:'#root',
+         data:{
+             list1:[1,2,3,4,5,],
+             list2:[
+                 {id:1,name:"a"},
+                 {id:2,name:"b"},
+                 {id:3,name:"c"},
+                 {id:4,name:"d"}
+                 ]
+         }
+     })
+</script>
 </body>
 </html>
