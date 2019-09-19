@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简易计算器</title>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .out{
+            background: #4e555b;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container text-center text-black-50 bg-light">
+
+        <div class="row">
+            <label>
+                <input type="text" class="col-md-9 py-md-3 m-2 form-control" v-model="show">
+            </label>
+        </div>
+        <div class="row text-center">
+           <button class="col-md-2 btn btn-info py-md-4 m-2 " @click="handle(7)">7</button>
+           <button class="col-md-2  btn btn-info py-md-4 m-2" @click="handle(8)">8</button>
+           <button class="col-md-2  btn btn-info py-md-4 m-2" @click="handle(9)">9</button>
+           <button class="col-md-2  btn btn-info py-md-4 m-2" @click="handleAdd()">+</button>
+        </div>
+            <div class="row text-center">
+                <button class="col-md-2 btn btn-info py-md-4 m-2" @click="handle(4)">4</button>
+                <button class="col-md-2  btn btn-info py-md-4 m-2" @click="handle(5)">5</button>
+                <button class="col-md-2  btn btn-info py-md-4 m-2" @click="handle(6)">6</button>
+                <button class="col-md-2  btn btn-info py-md-4 m-2"  @click="subtraction">-</button>
+            </div>
+            <div class="row text-center">
+                <button class="col-md-2 btn btn-info py-md-4 m-2" @click="handle(1)">1</button>
+                <button class="col-md-2  btn btn-info py-md-4 m-2" @click="handle(2)">2</button>
+                <button class="col-md-2  btn btn-info py-md-4 m-2" @click="handle(3)">3</button>
+                <button class="col-md-2  btn btn-info py-md-4 m-2" @click="multiplication">*</button>
+            </div>
+            <div class="row text-center">
+                <button class="col-md-2 btn btn-info py-md-4 m-2" @click="clear">C</button>
+                <button class="col-md-2  btn btn-info py-md-4 m-2" @click="handle(0)">0</button>
+                <button class="col-md-2  btn btn-info py-md-4 m-2" @click="theEqual">=</button>
+                <button class="col-md-2  btn btn-info py-md-4 m-2" @click="division">/</button>
+            </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+      let vm =new Vue({
+          el:'#root',
+          data:{
+              show:0,
+              result:null,
+              stepOne:0,
+              stepTwo:null,
+              state:null
+          },
+          methods:{
+              handleAdd(){
+                  console.log(this.show);
+                 this.stepOne=this.show;
+                  console.log(this.stepOne);
+                 this.show=0;
+                  this.state='+';
+
+              },
+              subtraction(){
+
+                  this.stepOne=this.show;
+                  this.show=0;
+                  this.state='-';
+              },
+              multiplication(){
+                  this.stepOne=this.show;
+                  this.show=0;
+                  this.state='*';
+              },
+              division(){
+                  if (this.show===0){
+                      this.show="0不能做除数"
+                  }
+                  setTimeout(()=>{
+                      this.show=0;
+                  },2000);
+                  this.stepOne=this.show;
+                  this.show=0;
+                  this.state='/';
+              },
+              theEqual(){
+
+                  switch (this.state) {
+                      case "+":
+                          this.show = this.stepOne + this.show;
+                          this.stepOne = this.show;
+                          break;
+                      case "-":
+                          this.show = this.stepOne - this.show;
+                          this.stepOne = this.show;
+                          break;
+                      case "*":
+                          this.show = this.stepOne * this.show;
+                          this.stepOne = this.show;
+                          break;
+                      case "/":
+                          if (this.show===0){
+                              this.show="0不能做除数";
+                              setTimeout(()=>{
+                                  this.show=0;
+                              },2000);
+                          }else {
+                              this.show = this.stepOne / this.show;
+                              this.stepOne = this.show;
+                          }
+                          break;
+                  }
+              },
+              clear(){
+                  this.show=0;
+                  this.stepOne=0;
+              },
+              handle(a){
+                  this.show= this.show*10+a;
+              }
+
+          }
+      })
+</script>
+</body>
+</html>

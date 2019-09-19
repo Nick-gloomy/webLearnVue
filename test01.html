@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+   // 将Vue的实例，控制这个 元素中的所有内容
+ <div id="root">
+     <span>{{msg}}</span>
+ </div>
+        <script>
+             //创建一个vue实例
+            //当导入包之后，在浏览器的内存中，就会多一个Vue构造函数
+            const vm = new Vue({
+                el:'#root',  //表示 vue 要控制 页面上的区域
+                 data:{            /*     //data ：存放的是el中要用到的数据*/
+                      msg: "123"
+                 }
+            })
+        </script>
+</body>
+</html>
