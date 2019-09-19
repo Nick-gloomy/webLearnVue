@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<div id="root">
+      <div class="container-fluid pt-5 bg-secondary text-light">
+          <div class="row bg-light pt-md-3 shadow-sm">
+              <label class="col-md-3 mx-md-2  input-group-prepend form-check-inline"><span class="input-group-text">id:</span>
+                  <input type="text" class="form-control" v-model="id" required="required">
+              </label>
+              <label class="col-md-3 ml-md-2 input-group-prepend form-check-inline"><span class="input-group-text">name:</span>
+                  <input type="text" class="form-control" v-model="name" required="required">
+              </label>
+              <label class="col-md-1 mr-md-2  form-check-inline">
+              <button class="btn btn-secondary " @click="add">添加</button>
+              </label>
+              <label class="col-md-3 mx-md-2 input-group-prepend form-check-inline"><span class="input-group-text">搜索名称关键词:</span>
+                  <input type="text" class="form-control" >
+              </label>
+
+          </div>
+
+      </div>
+<br>
+<br>
+     <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">名称</th>
+            <th scope="col">添加时间</th>
+            <th scope="col">操作</th>
+        </tr>
+        </thead>
+         <tr v-for="(item,index) in list" :key="index">
+             <th scope="col">{{item.id}}</th>
+             <th scope="col">{{item.name}}</th>
+             <th scope="col">{{item.time}}</th>
+             <th scope="col">
+                 <button class="btn btn-danger" @click="del(index)">删除</button>
+             </th>
+         </tr>
+     </table>
+
+</div>
+
+<script>
+     let vm =new Vue({
+         el:'#root',
+         data:{
+             id:'',
+             name:'',
+             list:[
+                 {id:1,name:'what',time:''},
+                 {id:2,name:'how',time:''},
+                 {id:3,name:'where',time:''}
+             ]
+
+         },
+         methods:{
+             add(){
+                   this.list.push({id:this.id,name:this.name,time:new Date()});
+                     this.name='';
+                     this.id='';
+             },
+             del(index){
+                  this.list.splice(index,1);
+             }
+         }
+     })
+</script>
+
+</body>
+</html>
