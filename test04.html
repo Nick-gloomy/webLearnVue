@@ -16,7 +16,15 @@
           <br>
           <br>
           <br>
+<!--            遍历对象键值对时 参数顺序  （值 键 索引）-->
           <span v-for="(val,key) in list3">值--{{val}}...键--{{key}}<br></span>
+          <br>
+          <br>
+          <br>
+          <br>
+<!--            in 后面放 对象 数组 对象数组   还可以 数字  表示循环次数-->
+<!--            循环从1开始-->
+          <p v-for="count in 5">这个第{{count}}个</p>
       </div>
 <script>
      let vm =new Vue({

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="root">
+    v-if 是将标签直接 创建 和 删除
+    v-show 是将标签的css增加display属性 并进行更改
+    <p v-if="flag">这是v-if</p>
+    <p v-show="flag">这是v-show</p>
+    <button @click="change" >flag</button>
+</div>
+
+<script>
+    let vm =new Vue({
+        el:'#root',
+        data:{
+            flag:false
+        },
+        methods:{
+            change(){
+                this.flag=!this.flag;
+            }
+        }
+    })
+</script>
+</body>
+</html>
