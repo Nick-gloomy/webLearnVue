@@ -12,6 +12,11 @@
           <br>
           <br>
           <p v-for="(user,index) in list2">{{ user.id }}---{{user.name}}---index:{{index}}</p>
+          <br>
+          <br>
+          <br>
+          <br>
+          <span v-for="(val,key) in list3">值--{{val}}...键--{{key}}<br></span>
       </div>
 <script>
      let vm =new Vue({
@@ -23,7 +28,13 @@
                  {id:2,name:"b"},
                  {id:3,name:"c"},
                  {id:4,name:"d"}
-                 ]
+                 ],
+             list3:{
+                 id:123,
+                 name:"zaac",
+                 age:12,
+
+             }
          }
      })
 </script>
